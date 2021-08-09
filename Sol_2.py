@@ -16,9 +16,10 @@ class Total_compensation:
             # Creating a cursor object using the cursor() method
             cursor = conn.cursor()
             # Reading table which we imported using connection through query
-            query = """select emp.ename, emp.empno, dept.dname, (case when enddate is not null then ((enddate-startdate+1)/30)*(jobhist.sal) else ((current_date-startdate+1)/30)*(jobhist.sal) end)as Total_Compensation,
-(case when enddate is not null then ((enddate-startdate+1)/30) else ((current_date-startdate+1)/30) end)as Months_Spent from jobhist, dept, emp 
-where jobhist.deptno=dept.deptno and jobhist.empno=emp.empno"""
+            query = """
+            select emp.ename, emp.empno, dept.dname, (case when enddate is not null then ((enddate-startdate+1)/30)*(jobhist.sal) else ((current_date-startdate+1)/30)*(jobhist.sal) end)as Total_Compensation,
+            (case when enddate is not null then ((enddate-startdate+1)/30) else ((current_date-startdate+1)/30) end)as Months_Spent from jobhist, dept, emp 
+            where jobhist.deptno=dept.deptno and jobhist.empno=emp.empno"""
             cursor.execute(query)
             columns = [desc[0] for desc in cursor.description]
             data = cursor.fetchall()
