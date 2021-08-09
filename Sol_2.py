@@ -40,6 +40,6 @@ where jobhist.deptno=dept.deptno and jobhist.empno=emp.empno"""
 
 if __name__=='__main__':
     conn = None
-    cur = None
+    cursor = None
     comp = Total_compensation()
     comp.compensation()
