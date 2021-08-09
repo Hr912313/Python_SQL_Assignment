@@ -14,7 +14,7 @@ class employees:
                 password="harshraj")
              
             # Creating a cursor object using the cursor() method
-            cursor = con.cursor()
+            cursor = conn.cursor()
             # Reading table which we imported using connection through query
             query = """
                     select dept.deptno, dept_name, sum(total_compensation) from Compensation, dept
